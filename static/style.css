@@ -69,3 +69,7 @@ li, p {
     vertical-align: top;
     margin: 10px;
 }
+
+.responsive {
+    width: 90%;
+}

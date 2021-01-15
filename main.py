@@ -24,7 +24,7 @@ def fill_choices(index):
     return options
 
 @app.route('/', methods=['GET', 'POST'])
-def checkbox_form():
+def show_grid():
     if request.method == 'POST':
         choice = int(request.form['choice'])
         steps = f"{request.form['steps']}-{choice}"

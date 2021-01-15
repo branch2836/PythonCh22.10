@@ -1,7 +1,7 @@
 
 <section class="centered">
     <section class="grid_image">
-        <img src="{{url_for('static', filename=image)}}" /><br>
+        <img class="responsive" src="{{url_for('static', filename=image)}}" /><br>
         <p>Path followed: {{steps}}</p>
     </section>
     <section class="choice_form">
@@ -9,11 +9,11 @@
         <p>Choose a direction to move:</p>
         <form action="/" method="POST">
             <label><input type="radio" name="choice" value="" required />Left</label>
-            <label><input type="radio" name="choice" value="" required />Right</label>
-            <label><input type="radio" name="choice" value="" required />Up</label>
-            <label><input type="radio" name="choice" value="" required />Down</label>
+            <label><input type="radio" name="choice" value="" />Right</label>
+            <label><input type="radio" name="choice" value="" />Up</label>
+            <label><input type="radio" name="choice" value="" />Down</label>
             <input type="hidden" name="steps" value={{steps}} />
-            <button>Submit</button>
+            <button>Go!</button>
         </form>
     </section>
 </section>
