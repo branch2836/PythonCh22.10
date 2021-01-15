@@ -37,7 +37,7 @@ def checkbox_form():
 
     tab_title = "Flask Exercises"
     page_title = "Move Around A Grid"
-    return render_template('decision_tree.html', tab_title=tab_title, page_title=page_title,
+    return render_template('grid.html', tab_title=tab_title, page_title=page_title,
         choices = choices, image=image, steps = steps)
 
 if __name__ == '__main__':
