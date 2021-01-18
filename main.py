@@ -26,19 +26,26 @@ def fill_choices(index):
 @app.route('/', methods=['GET', 'POST'])
 def show_grid():
     if request.method == 'POST':
+        # Collect the user's direction choice from the form.
         choice = int(request.form['choice'])
+        # Add the number of the new box to the 'steps' string.
         steps = f"{request.form['steps']}-{choice}"
+        # Assign the new image title.
         image = images[choice]
+        # Determine which direction choices belong with the new box.
         choices = fill_choices(choice)
     else:
+        # Randomly select a starting grid image.
         image = random.choice(images)
+        # Determine which direction choices belong with the highlighted box.
         choices = fill_choices(images.index(image))
+        # Assign the number of the highlighted box to the 'steps' string.
         steps = str(images.index(image))
 
     tab_title = "Flask Exercises"
     page_title = "Move Around A Grid"
     return render_template('grid.html', tab_title=tab_title, page_title=page_title,
-        choices = choices, image=image, steps = steps)
+        choices=choices, image=image, steps=steps)
 
 if __name__ == '__main__':
     app.run()
