@@ -26,14 +26,13 @@ def fill_choices(index):
 @app.route('/', methods=['GET', 'POST'])
 def show_grid():
     if request.method == 'POST':
-        # Collect the user's direction choice from the form.
-        choice = int(request.form['choice'])
-        # Add the number of the new box to the 'steps' string.
-        steps = f"{request.form['steps']}-{choice}"
-        # Assign the new image title.
-        image = images[choice]
-        # Determine which direction choices belong with the new box.
-        choices = fill_choices(choice)
+        # When the user submits the form, the value of the selected radio
+        # button identifies the new box to highlight in the grid.
+        choice = int(request.form['choice'])    # Collect the radio button value from the form.
+        old_steps = request.form['steps']       # Retrieve the old 'steps' string from the webpage. 
+        steps = f"{old_steps}-{choice}"     # Generate a new 'steps' string.
+        image = images[choice]              # Assign a file name from the images list.
+        choices = fill_choices(choice)      # Call the fill_choices() function, which returns a dictionary of the allowed directions and values for the new box.
     else:
         # Randomly select a starting grid image.
         image = random.choice(images)
