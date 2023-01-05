@@ -1,4 +1,5 @@
-
+{% extends 'base.html' %}
+{% block content %}
 <section class="centered">
     <section class="grid_image">
         <img class="responsive" src="{{url_for('static', filename=image)}}" /><br>
@@ -6,15 +7,22 @@
     </section>
     <section class="choice_form">
         <h2>Heading Text Here</h2>
+        {% if steps|length < 9 %}
         <p>Choose a direction to move:</p>
         <form action="/" method="POST">
-            <label><input type="radio" name="choice" value="" required />Left</label>
-            <label><input type="radio" name="choice" value="" />Right</label>
-            <label><input type="radio" name="choice" value="" />Up</label>
-            <label><input type="radio" name="choice" value="" />Down</label>
+            
+            {% for (direction, value) in choices.items() %}
+            <label><input type="radio" name="choice" value={{value}} required />{{direction}}</label>
+            {% endfor %}
             <input type="hidden" name="steps" value={{steps}} />
             <button>Go!</button>
         </form>
+        {% else %}
+        <p>You've taken five steps. Time to start over!</p>
+            <form action="/" method="GET">
+                <button class="restart">Restart!</button>
+            </form>
+        {% endif %}
     </section>
 </section>
 
@@ -26,3 +34,5 @@
     4) Use a conditional to display a different form after 5 moves have been
         made over the grid.
 -->
+
+{% endblock %}
